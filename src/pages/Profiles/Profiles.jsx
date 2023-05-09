@@ -18,7 +18,11 @@ const Profiles = () => {
     fetchProfiles()
   }, [])
 
-  if(!profiles.length) return <main><h1>No profiles yet</h1></main>
+  if(!profiles.length) return (
+    <main className={styles.container}>
+      <h1>No profiles yet</h1>
+    </main>
+  )
 
   return (
     <main className={styles.container}>

@@ -33,6 +33,9 @@ const Signup = ({ handleAuthEvt }) => {
   const handleSubmit = async evt => {
     evt.preventDefault()
     try {
+      if(!import.meta.env.VITE_BACK_END_SERVER_URL) {
+        throw new Error("No VITE_BACK_END_SERVER_URL in front-end .env")
+      }
       setIsSubmitted(true)
       await authService.signup(formData, photoData.photo)
       handleAuthEvt()
@@ -108,8 +111,8 @@ const Signup = ({ handleAuthEvt }) => {
             Cancel
           </Link>
           <button 
-            disabled={isFormInvalid() || isSubmitted} 
             className={styles.button}
+            disabled={isFormInvalid() || isSubmitted} 
           >
             {!isSubmitted ? "Sign Up" : "🚀 Sending..."}
           </button>

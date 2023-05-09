@@ -1,0 +1,47 @@
+input {
+  margin-left: 16px;
+  padding: 4px 8px;
+  font-size: 16px;
+  width: 300px;
+}
+
+input[type="file"] {
+  padding: 0;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.message {
+  margin-top: 0;
+  height: 22px;
+  color: #dd1b16;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+.label {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.button {
+  margin-left: 16px;
+}
+
+.form > label:last-of-type {
+  margin-bottom: 16px;
+}

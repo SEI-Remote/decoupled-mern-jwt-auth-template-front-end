@@ -39,20 +39,20 @@ function App() {
       <Routes>
         <Route path="/" element={<Landing user={user} />} />
         <Route
+          path="/profiles"
+          element={
+            <ProtectedRoute user={user}>
+              <Profiles />
+            </ProtectedRoute>
+          }
+        />
+        <Route
           path="/auth/signup"
           element={<Signup handleAuthEvt={handleAuthEvt} />}
         />
         <Route
           path="/auth/login"
           element={<Login handleAuthEvt={handleAuthEvt} />}
-        />
-        <Route
-          path="/auth/profiles"
-          element={
-            <ProtectedRoute user={user}>
-              <Profiles />
-            </ProtectedRoute>
-          }
         />
         <Route
           path="/auth/change-password"

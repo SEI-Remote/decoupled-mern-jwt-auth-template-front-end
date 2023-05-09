@@ -11,7 +11,7 @@ import styles from './Login.module.css'
 const LoginPage = ({ handleAuthEvt }) => {
   const navigate = useNavigate()
 
-  const [message, setMessage] = useState([''])
+  const [message, setMessage] = useState('')
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -25,6 +25,9 @@ const LoginPage = ({ handleAuthEvt }) => {
   const handleSubmit = async evt => {
     evt.preventDefault()
     try {
+      if(!import.meta.env.VITE_BACK_END_SERVER_URL) {
+        throw new Error("No VITE_BACK_END_SERVER_URL in front-end .env")
+      }
       await authService.login(formData)
       handleAuthEvt()
       navigate('/')
