@@ -4,12 +4,12 @@ import { addPhoto as addProfilePhoto } from './profileService'
 
 const BASE_URL = `${import.meta.env.VITE_BACK_END_SERVER_URL}/api/auth`
 
-async function signup(userFormData, photoFormData) {
+async function signup(signupFormData, photoData) {
   try {
     const res = await fetch(`${BASE_URL}/signup`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(userFormData),
+      body: JSON.stringify(signupFormData),
     })
     const json = await res.json()
 
@@ -18,9 +18,9 @@ async function signup(userFormData, photoFormData) {
     if (json.token) {
       tokenService.setToken(json.token)
 
-      if (photoFormData) {
+      if (photoData) {
         const photoData = new FormData()
-        photoData.append('photo', photoFormData)
+        photoData.append('photo', photoData)
         return await addProfilePhoto(
           photoData,
           tokenService.getUserFromToken().profile
@@ -40,12 +40,12 @@ function logout() {
   tokenService.removeToken()
 }
 
-async function login(formData) {
+async function login(loginFormData) {
   try {
     const res = await fetch(`${BASE_URL}/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData),
+      body: JSON.stringify(loginFormData),
     })
     const json = await res.json()
 
@@ -57,7 +57,7 @@ async function login(formData) {
   }
 }
 
-async function changePassword(formData) {
+async function changePassword(changePasswordFormData) {
   try {
     const res = await fetch(`${BASE_URL}/change-password`, {
       method: 'POST',
@@ -65,7 +65,7 @@ async function changePassword(formData) {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${tokenService.getToken()}`,
       },
-      body: JSON.stringify(formData),
+      body: JSON.stringify(changePasswordFormData),
     })
     const json = await res.json()
 
