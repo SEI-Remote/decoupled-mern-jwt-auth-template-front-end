@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom'
+// npm modules
+import { NavLink } from 'react-router-dom'
 
 const NavBar = ({ user, handleLogout }) => {
   return (
@@ -6,14 +7,14 @@ const NavBar = ({ user, handleLogout }) => {
       {user ?
         <ul>
           <li>Welcome, {user.name}</li>
-          <li><Link to="/profiles">Profiles</Link></li>
-          <li><Link to="" onClick={handleLogout}>LOG OUT</Link></li>
-          <li><Link to="/auth/change-password">Change Password</Link></li>
+          <li><NavLink to="/profiles">Profiles</NavLink></li>
+          <li><NavLink to="" onClick={handleLogout}>LOG OUT</NavLink></li>
+          <li><NavLink to="/change-password">Change Password</NavLink></li>
         </ul>
       :
         <ul>
-          <li><Link to="/auth/login">Log In</Link></li>
-          <li><Link to="/auth/signup">Sign Up</Link></li>
+          <li><NavLink to="/login">Log In</NavLink></li>
+          <li><NavLink to="/signup">Sign Up</NavLink></li>
         </ul>
       }
     </nav>

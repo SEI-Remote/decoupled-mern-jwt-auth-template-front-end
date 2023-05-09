@@ -1,0 +1,9 @@
+DONE
+
+components
+- NavBar
+- ProtectedRoute
+
+pages
+- Signup
+- Landing

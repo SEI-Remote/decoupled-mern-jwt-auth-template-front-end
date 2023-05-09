@@ -103,7 +103,7 @@ const Signup = ({ handleAuthEvt }) => {
             onChange={handleChangePhoto}
           />
         </label>
-        <div className={styles.inputContainer}>
+        <div>
           <Link to="/">
             Cancel
           </Link>
