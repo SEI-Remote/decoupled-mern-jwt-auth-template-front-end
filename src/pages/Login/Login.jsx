@@ -25,8 +25,8 @@ const LoginPage = ({ handleAuthEvt }) => {
   const handleSubmit = async evt => {
     evt.preventDefault()
     try {
-      if(!import.meta.env.VITE_BACK_END_SERVER_URL) {
-        throw new Error("No VITE_BACK_END_SERVER_URL in front-end .env")
+      if (!import.meta.env.VITE_BACK_END_SERVER_URL) {
+        throw new Error('No VITE_BACK_END_SERVER_URL in front-end .env')
       }
       await authService.login(formData)
       handleAuthEvt()
@@ -47,11 +47,7 @@ const LoginPage = ({ handleAuthEvt }) => {
     <main className={styles.container}>
       <h1>Log In</h1>
       <p className={styles.message}>{message}</p>
-      <form
-        autoComplete="off"
-        onSubmit={handleSubmit}
-        className={styles.form}
-      >
+      <form autoComplete="off" onSubmit={handleSubmit} className={styles.form}>
         <label className={styles.label}>
           Email
           <input
@@ -71,9 +67,7 @@ const LoginPage = ({ handleAuthEvt }) => {
           />
         </label>
         <div>
-          <Link to="/">
-            Cancel
-          </Link>
+          <Link to="/">Cancel</Link>
           <button className={styles.button} disabled={isFormInvalid()}>
             Log In
           </button>

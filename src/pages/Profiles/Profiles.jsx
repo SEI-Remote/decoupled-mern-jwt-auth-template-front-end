@@ -18,20 +18,18 @@ const Profiles = () => {
     fetchProfiles()
   }, [])
 
-  if(!profiles.length) return (
-    <main className={styles.container}>
-      <h1>No profiles yet</h1>
-    </main>
-  )
-
+  if (!profiles.length) {
+    return <main className={styles.container}><h1>Loading...</h1></main>
+  }
+  
   return (
     <main className={styles.container}>
       <h1>Hello. This is a list of all the profiles.</h1>
-      {profiles.map(profile =>
+      {profiles.map(profile => (
         <p key={profile._id}>{profile.name}</p>
-      )}
+      ))}
     </main>
   )
 }
- 
+
 export default Profiles

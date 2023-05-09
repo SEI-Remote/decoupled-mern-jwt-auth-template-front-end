@@ -12,7 +12,7 @@ async function signup(userFormData, photoFormData) {
       body: JSON.stringify(userFormData),
     })
     const json = await res.json()
-    
+
     if (json.err) throw new Error(json.err)
 
     if (json.token) {
@@ -75,7 +75,6 @@ async function changePassword(formData) {
       tokenService.removeToken()
       tokenService.setToken(json.token)
     }
-    
   } catch (err) {
     throw new Error(err)
   }

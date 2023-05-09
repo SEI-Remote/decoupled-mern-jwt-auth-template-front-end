@@ -21,7 +21,7 @@ async function addPhoto(photoData, profileId) {
       headers: {
         'Authorization': `Bearer ${tokenService.getToken()}`
       },
-      body: photoData
+      body: photoData,
     })
     return await res.json()
   } catch (err) {

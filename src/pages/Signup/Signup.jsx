@@ -33,8 +33,8 @@ const Signup = ({ handleAuthEvt }) => {
   const handleSubmit = async evt => {
     evt.preventDefault()
     try {
-      if(!import.meta.env.VITE_BACK_END_SERVER_URL) {
-        throw new Error("No VITE_BACK_END_SERVER_URL in front-end .env")
+      if (!import.meta.env.VITE_BACK_END_SERVER_URL) {
+        throw new Error('No VITE_BACK_END_SERVER_URL in front-end .env')
       }
       setIsSubmitted(true)
       await authService.signup(formData, photoData.photo)
@@ -57,19 +57,10 @@ const Signup = ({ handleAuthEvt }) => {
     <main className={styles.container}>
       <h1>Sign Up</h1>
       <p className={styles.message}>{message}</p>
-      <form
-        autoComplete="off"
-        onSubmit={handleSubmit}
-        className={styles.form}
-      >
+      <form autoComplete="off" onSubmit={handleSubmit} className={styles.form}>
         <label className={styles.label}>
           Name
-          <input
-            type="text"
-            value={name}
-            name="name"
-            onChange={handleChange}
-          />
+          <input type="text" value={name} name="name" onChange={handleChange} />
         </label>
         <label className={styles.label}>
           Email
@@ -100,21 +91,15 @@ const Signup = ({ handleAuthEvt }) => {
         </label>
         <label className={styles.label}>
           Upload Photo
-          <input
-            type="file"
-            name="photo"
-            onChange={handleChangePhoto}
-          />
+          <input type="file" name="photo" onChange={handleChangePhoto} />
         </label>
         <div>
-          <Link to="/">
-            Cancel
-          </Link>
-          <button 
+          <Link to="/">Cancel</Link>
+          <button
             className={styles.button}
-            disabled={isFormInvalid() || isSubmitted} 
+            disabled={isFormInvalid() || isSubmitted}
           >
-            {!isSubmitted ? "Sign Up" : "🚀 Sending..."}
+            {!isSubmitted ? 'Sign Up' : '🚀 Sending...'}
           </button>
         </div>
       </form>
