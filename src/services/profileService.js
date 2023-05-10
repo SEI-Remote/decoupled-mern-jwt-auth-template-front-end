@@ -14,8 +14,9 @@ async function getAllProfiles() {
   }
 }
 
-async function addPhoto(photoData, profileId) {
+async function addPhoto(photoData) {
   try {
+    const profileId = tokenService.getUserFromToken().profile
     const res = await fetch(`${BASE_URL}/${profileId}/add-photo`, {
       method: 'PUT',
       headers: {
