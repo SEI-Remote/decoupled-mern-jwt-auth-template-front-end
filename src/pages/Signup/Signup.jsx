@@ -1,5 +1,5 @@
 // npm modules
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
 // services
@@ -10,6 +10,7 @@ import styles from './Signup.module.css'
 
 const Signup = ({ handleAuthEvt }) => {
   const navigate = useNavigate()
+  const imgInputRef = useRef(null)
 
   const [message, setMessage] = useState('')
   const [formData, setFormData] = useState({
@@ -27,6 +28,28 @@ const Signup = ({ handleAuthEvt }) => {
   }
 
   const handleChangePhoto = evt => {
+    const file = evt.target.files[0]
+    let isFileInvalid = false
+    let errMsg = ""
+    const validFormats = ['gif', 'jpeg', 'jpg', 'png', 'svg', 'webp']
+    const photoFormat = file.name.split('.').at(-1)
+
+    // cloudinary supports files up to 10.4MB each as of May 2023
+    if (file.size >= 10485760) {
+      errMsg = "Image must be smaller than 10.4MB"
+      isFileInvalid = true
+    }
+    if (!validFormats.includes(photoFormat)) {
+      errMsg = "Image must be in gif, jpeg/jpg, png, svg, or webp format"
+      isFileInvalid = true
+    }
+    
+    if (isFileInvalid) {
+      setMessage(errMsg)
+      imgInputRef.current.value = null
+      return
+    }
+
     setPhotoData({ photo: evt.target.files[0] })
   }
 
@@ -91,13 +114,18 @@ const Signup = ({ handleAuthEvt }) => {
         </label>
         <label className={styles.label}>
           Upload Photo
-          <input type="file" name="photo" onChange={handleChangePhoto} />
+          <input 
+            type="file" 
+            name="photo" 
+            onChange={handleChangePhoto}
+            ref={imgInputRef}
+          />
         </label>
         <div>
           <Link to="/">Cancel</Link>
           <button
             className={styles.button}
-            disabled={isFormInvalid() || isSubmitted}
+            disabled={ isFormInvalid() || isSubmitted }
           >
             {!isSubmitted ? 'Sign Up' : '🚀 Sending...'}
           </button>
