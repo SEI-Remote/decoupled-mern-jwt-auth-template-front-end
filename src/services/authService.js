@@ -19,9 +19,7 @@ async function signup(signupFormData, photoData) {
       tokenService.setToken(json.token)
 
       if (photoData) {
-        const photoFormData = new FormData()
-        photoFormData.append('photo', photoData)
-        await addProfilePhoto(photoFormData)
+        await addProfilePhoto(photoData)
       }
     }
   } catch (err) {

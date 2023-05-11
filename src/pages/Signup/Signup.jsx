@@ -44,8 +44,9 @@ const Signup = ({ handleAuthEvt }) => {
       isFileInvalid = true
     }
     
+    setMessage(errMsg)
+    
     if (isFileInvalid) {
-      setMessage(errMsg)
       imgInputRef.current.value = null
       return
     }
