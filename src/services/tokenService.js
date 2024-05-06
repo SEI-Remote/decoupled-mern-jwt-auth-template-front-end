@@ -1,5 +1,5 @@
 // npm modules
-import jwt_decode from 'jwt-decode'
+import { jwtDecode } from 'jwt-decode'
 
 function setToken(token) {
   localStorage.setItem('token', token)
@@ -8,7 +8,7 @@ function setToken(token) {
 function getToken() {
   let token = localStorage.getItem('token')
   if (!token) return null
-  const payload = jwt_decode(token)
+  const payload = jwtDecode(token)
 
   if (payload.exp < Date.now() / 1000) {
     localStorage.removeItem('token')
@@ -20,7 +20,7 @@ function getToken() {
 
 function getUserFromToken() {
   const token = getToken()
-  return token ? jwt_decode(token).user : null
+  return token ? jwtDecode(token).user : null
 }
 
 function removeToken() {
